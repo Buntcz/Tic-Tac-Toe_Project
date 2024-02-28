@@ -1,0 +1,25 @@
+.grid-container {
+    width: 300px;
+    height: 300px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0px;
+    margin: 0;
+}
+
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+button {
+    margin: 1rem;
+}
