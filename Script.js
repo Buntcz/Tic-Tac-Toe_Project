@@ -41,8 +41,8 @@ function startGame() {
 
 
 function handleClick() {
-  const index = this.getAttribute("id");
-  if(boardArray[index] != " ") return;
+  const index = this.getAttribute("cellIndex");
+  if(boardArray[index] != "") return;
   render(this, index);
   checkWin();
   }
@@ -51,17 +51,26 @@ function handleClick() {
 function  render(cell,index) {
   boardArray[index] = currentPlayer.marker;
   cell.textContent = currentPlayer.marker;
+  console.log(boardArray)
+  switchPlayers();
 
 }
 
 function switchPlayers() {
- 
+  if (currentPlayer === playerOne) {
+    currentPlayer = playerTwo 
+    currentMsg.textContent = `${currentPlayer.name}'s turn`
+  } else {
+    currentPlayer = playerOne;
+    currentMsg.textContent = `${currentPlayer.name}'s turn`
+  }
 }
 
 function checkWin() {
-
+ 
 }
 
 function restartGame() {
 
 }
+
