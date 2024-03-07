@@ -2,7 +2,7 @@ const cells = document.querySelectorAll(".cell");
 const currentMsg = document.querySelector(".currentPlayer");
 const restartBtn =  document.querySelector(".resetGame");
 
-const boardArray = ["", "", "", "", "", "", "", "", ""];
+let boardArray = ["", "", "", "", "", "", "", "", ""];
 const winLines = [
   [0,1,2],
   [3,4,5],
@@ -20,7 +20,6 @@ const  createPlayer = (name, marker) => {
 
 const playerOne = createPlayer("player1", "X")
 const playerTwo = createPlayer("player2", "O")
-
 
 
 let currentPlayer = playerOne;
@@ -42,7 +41,7 @@ function startGame() {
 
 function handleClick() {
   const index = this.getAttribute("cellIndex");
-  if(boardArray[index] != "") return;
+  if(boardArray[index] != "" || !running) return;
   render(this, index);
   checkWin();
   }
@@ -53,7 +52,7 @@ function  render(cell,index) {
   cell.textContent = currentPlayer.marker;
   console.log(boardArray)
   switchPlayers();
-
+  checkWin();
 }
 
 function switchPlayers() {
@@ -67,10 +66,48 @@ function switchPlayers() {
 }
 
 function checkWin() {
+  let gameWon = false;
+ for(let i = 0; i <= winLines.length; i++) 
+ {
+ let  winLine = winLines[i];
+ let cell1  = boardArray[winLine[0]];
+ let cell2 = boardArray[winLine[1]];
+ let cell3 = boardArray[winLine[2]];
+ if (cell1 == "" || cell2 == "" || cell3 == "") {
+  continue;
+ }
  
+ if (cell1 = "X" && cell1 == cell2 && cell2 == cell3) {
+  gameWon = true;
+  currentMsg.textContent = "Player 1 won!"
+  break;
+ } else if (cell1 = "O" && cell1 == cell2 && cell2 == cell3) {
+  gameWon = true;
+  currentMsg.textContent = "Player 2 won!"
+  break;
+ } 
+ checkForTie();
+ }
+ if (gameWon = true) {
+  running = false;
+ }
 }
 
-function restartGame() {
+function checkForTie() {
+  for(let i = 0; i <= boardArray.length; i++) {
+    if(boardArray[i] != " ") {
+      console.log("Tie!")
+    }
+  }
+}
 
+
+function restartGame() {
+   boardArray = ["", "", "", "", "", "", "", "", "", ""]
+   for(let i = 0; i < boardArray.length; i++) {
+    cells.forEach((cell) => cell.textContent = " ");
+   }
+   currentPlayer = playerOne;
+   startGame();
 }
 
