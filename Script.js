@@ -17,9 +17,10 @@ const winLines = [
 const  createPlayer = (name, marker) => {
   return {name, marker}
 };
-
-const playerOne = createPlayer("player1", "X")
-const playerTwo = createPlayer("player2", "O")
+const name1 = prompt("Enter a name for first player");
+const name2 = prompt("Enter a name for second player");
+const playerOne = createPlayer(name1, "X")
+const playerTwo = createPlayer(name2, "O")
 
 
 let currentPlayer = playerOne;
@@ -52,7 +53,6 @@ function  render(cell,index) {
   cell.textContent = currentPlayer.marker;
   console.log(boardArray)
   switchPlayers();
-  checkWin();
 }
 
 function switchPlayers() {
@@ -77,28 +77,21 @@ function checkWin() {
   continue;
  }
  
- if (cell1 = "X" && cell1 == cell2 && cell2 == cell3) {
+ if (cell1 === "X" && cell1 == cell2 && cell2 == cell3) {
   gameWon = true;
-  currentMsg.textContent = "Player 1 won!"
+  running = false;
+  currentMsg.textContent =  `${playerOne.name} won!`
   break;
- } else if (cell1 = "O" && cell1 == cell2 && cell2 == cell3) {
+ } else if (cell1 === "O" && cell1 == cell2 && cell2 == cell3) {
   gameWon = true;
-  currentMsg.textContent = "Player 2 won!"
+  running = false;
+  currentMsg.textContent = `${playerTwo.name} won!`
   break;
- } 
- checkForTie();
- }
- if (gameWon = true) {
+ }  else if (!boardArray.includes("")) {
+  currentMsg.textContent = "Draw."
   running = false;
  }
-}
-
-function checkForTie() {
-  for(let i = 0; i <= boardArray.length; i++) {
-    if(boardArray[i] != " ") {
-      console.log("Tie!")
-    }
-  }
+ }
 }
 
 
