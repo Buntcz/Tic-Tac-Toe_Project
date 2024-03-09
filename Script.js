@@ -1,3 +1,5 @@
+const TicTacToe = (function() {
+
 const cells = document.querySelectorAll(".cell");
 const currentMsg = document.querySelector(".currentPlayer");
 const restartBtn =  document.querySelector(".resetGame");
@@ -26,9 +28,7 @@ const playerTwo = createPlayer(name2, "O")
 let currentPlayer = playerOne;
 
 let running = false;
-// 
 
-startGame();
 
 function startGame() {
    cells.forEach(cell => 
@@ -103,4 +103,10 @@ function restartGame() {
    currentPlayer = playerOne;
    startGame();
 }
+return {
+  startGame
+}
 
+})();
+
+TicTacToe.startGame();
